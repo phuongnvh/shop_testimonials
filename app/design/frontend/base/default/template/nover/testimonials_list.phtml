@@ -1,0 +1,28 @@
+<?php $collection = $this->getCollection(); ?>
+<div id="testimonials_messages"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
+<div class="page-title">
+    <h1><?php echo Mage::helper('testimonials')->__('Testimonials List') ?></h1>
+</div>
+<?php if($collection->getSize()): ?>
+    <table id="my-custom-table">
+        <thead>
+        <tr>
+            <th><?php echo $this->__('ID #') ?></th>
+            <th><?php echo $this->__('Title') ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php $_odd = ''; ?>
+        <?php foreach ($collection as $data): ?>
+            <tr>
+                <td><?php echo $data->getId() ?></td>
+                <td><a href="<?php echo Mage::helper('testimonials')->getTestimonialInfoUrl($data->getId())?>"><span><?php echo $data->getTestimonialName(); ?></span></a></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <script type="text/javascript">decorateTable('my-custom-table');</script>
+    <?php echo $this->getPagerHtml(); ?>
+<?php else: ?>
+    <p><?php echo $this->__('The collection is empty.'); ?></p>
+<?php endif ?>

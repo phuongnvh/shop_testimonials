@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="top.links">
+            <action method="addLink" translate="label title" module="testimonials">
+                <label>Testimonials</label>
+                <url helper="testimonials/getTestimonialsUrl"/>
+                <title>Testimonials</title>
+                <prepare/><urlParams/>
+                <position>20</position>
+            </action>
+        </reference>
+    </default>
+    <testimonials_list_index>
+        <reference name="content">
+            <block type="testimonials/list" name="testimonials_list" template="nover/testimonials_list.phtml"/>
+        </reference>
+    </testimonials_list_index>
+
+    <testimonials_info_index>
+        <reference name="content">
+            <block type="testimonials/info" name="testimonials_info" template="nover/testimonials_info.phtml"/>
+        </reference>
+    </testimonials_info_index>
+</layout>

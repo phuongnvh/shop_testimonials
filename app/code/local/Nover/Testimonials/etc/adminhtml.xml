@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <nover module="testimonials">
+            <title>Nover</title>
+            <sort_order>35</sort_order>
+            <children>
+                <testimonials module="testimonials">
+                    <title>Testimonials</title>
+                    <sort_order>0</sort_order>
+                    <children>
+                        <info module="testimonials">
+                            <title>Info</title>
+                            <sort_order>10</sort_order>
+                            <action>adminhtml/testimonials/list</action>
+                        </info>
+                        <feedback module="testimonials">
+                            <title>Feedback</title>
+                            <sort_order>20</sort_order>
+                            <action>adminhtml/testimonials_feedback/list</action>
+                        </feedback>
+                    </children>
+                </testimonials>
+            </children>
+        </nover>
+    </menu>
+
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <nover>
+                        <children>
+                            <testimonials>
+                                <title>Manage Testimonials</title>
+                                <sort_order>0</sort_order>
+                            </testimonials>
+                        </children>
+                    </nover>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <testimonials>
+                                        <title>Testimonials Setting</title>
+                                    </testimonials>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+
+</config>

@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Nover_Testimonials>
+            <version>0.1.0</version>
+        </Nover_Testimonials>
+    </modules>
+
+    <frontend>
+        <routers>
+            <testimonials>
+                <use>standard</use>
+                <args>
+                    <module>Nover_Testimonials</module>
+                    <frontName>testimonials</frontName>
+                </args>
+            </testimonials>
+        </routers>
+        <layout>
+            <updates>
+                <testimonials module="Nover_Testimonials">
+                    <file>nover/testimonials.xml</file>
+                </testimonials>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Nover_Testimonials>
+                    <files>
+                        <default>Nover_Testimonials.csv</default>
+                    </files>
+                </Nover_Testimonials>
+            </modules>
+        </translate>
+    </frontend>
+
+    <global>
+        <blocks>
+            <testimonials>
+                <class>Nover_Testimonials_Block</class>
+            </testimonials>
+        </blocks>
+        <models>
+            <testimonials>
+                <class>Nover_Testimonials_Model</class>
+                <resourceModel>testimonials_resource</resourceModel>
+            </testimonials>
+            <testimonials_resource>
+                <class>Nover_Testimonials_Model_Resource</class>
+                <entities>
+                    <info>
+                        <table>testimonials_info</table>
+                    </info>
+                    <feedback>
+                        <table>testimonials_feedback</table>
+                    </feedback>
+                </entities>
+            </testimonials_resource>
+        </models>
+        <helpers>
+            <testimonials>
+                <class>Nover_Testimonials_Helper</class>
+            </testimonials>
+        </helpers>
+        <resources>
+            <testimonials_setup>
+                <setup>
+                    <module>Nover_Testimonials</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </testimonials_setup>
+            <testimonials_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </testimonials_write>
+            <testimonials_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </testimonials_read>
+        </resources>
+    </global>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <testimonials after="Mage_Adminhtml">Nover_Testimonials_Adminhtml</testimonials>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <testimonials module="testimonials">
+                    <file>testimonials.xml</file>
+                </testimonials>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <default>
+        <testimonials>
+            <general>
+                <enabled>1</enabled>
+                <layout>page/2columns-right.phtml</layout>
+            </general>
+        </testimonials>
+    </default>
+
+</config>

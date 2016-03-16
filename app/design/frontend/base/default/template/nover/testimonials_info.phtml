@@ -1,0 +1,45 @@
+<div id="info_messages"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
+<?php $testimonialInfo = $this->getInfo() ?>
+<?php $feedback = $this->getFeedback() ?>
+<div class="page-title">
+    <h1><?php echo Mage::helper('testimonials')->__('%s Info', $testimonialInfo->getTestimonialName()) ?></h1>
+</div>
+<?php echo Mage::helper('cms')->getBlockTemplateProcessor()->filter($testimonialInfo->getContent());?>
+
+<?php if($feedback->count()): ?>
+    <?php $i = 1;?>
+<div class="feedback-info">
+    <h2><?php echo Mage::helper('testimonials')->__('Feedback') ?></h2>
+</div>
+    <?php foreach($feedback as $feed): ?>
+        <div id="feedback-<?=$i++?>">
+            <span><?php echo $this->__('User: ')?> <?= $feed->getUsername() ?></span>
+            <span><?php echo $this->__('Content: ')?> <?= $feed->getContent() ?></span>
+        </div>
+    <?php endforeach;?>
+<?php endif;?>
+<?php if(Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+    <form action="<?php echo $this->getUrl('testimonials/info/save', array('id' => $testimonialInfo->getId())); ?>" id="testimonialForm" method="post" enctype="multipart/form-data">
+        <div class="fieldset">
+            <h2 class="legend"><?php echo Mage::helper('testimonials')->__('Add Your Feedback') ?></h2>
+            <ul class="form-list">
+                <li class="wide">
+                    <label for="content" class="required"><em>*</em><?php echo Mage::helper('testimonials')->__('Content') ?></label>
+                    <div class="input-box">
+                        <textarea name="content" id="content" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('testimonials')->__('Content')) ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="buttons-set">
+            <p class="required"><?php echo Mage::helper('testimonials')->__('* Required Fields') ?></p>
+            <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+            <button type="submit" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('testimonials')->__('Submit')) ?>" class="button"><span><span><?php echo Mage::helper('testimonials')->__('Submit') ?></span></span></button>
+        </div>
+    </form>
+    <script type="text/javascript">
+        //<![CDATA[
+        var contactForm = new VarienForm('testimonialForm', true);
+        //]]>
+    </script>
+<?php endif; ?>
